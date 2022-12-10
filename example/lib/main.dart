@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // padding: const EdgeInsets.symmetric(horizontal: 420.0),
             padding: const EdgeInsets.symmetric(horizontal: 0.0),
             child: NumericKeyboard(
+              // showBackgroundColor: false,
               // showExtraButtons: true,
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               buttonBackgroundColor: Colors.blue,

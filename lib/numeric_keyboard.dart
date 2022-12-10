@@ -11,6 +11,12 @@ class NumericKeyboard extends StatefulWidget {
 
   final bool showExtraButtons;
 
+  final bool showBackgroundColor;
+
+  final double? buttonHeight;
+
+  final double? buttonWidth;
+
   /// Display a custom right icon
   final Icon? rightIcon;
 
@@ -40,6 +46,9 @@ class NumericKeyboard extends StatefulWidget {
     this.mainAxisAlignment = MainAxisAlignment.spaceEvenly,
     this.buttonBackgroundColor,
     this.showExtraButtons = false,
+    this.buttonHeight = 50,
+    this.buttonWidth = 50,
+    this.showBackgroundColor = true,
   }) : super(key: key);
 
   @override
@@ -97,13 +106,15 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.leftButtonFn,
                   child: Container(
                       decoration: new BoxDecoration(
-                          color:
-                              widget.buttonBackgroundColor ?? Color(0xFFEBEDF0),
+                          color: !widget.showBackgroundColor
+                              ? null
+                              : widget.buttonBackgroundColor ??
+                                  Color(0xFFEBEDF0),
                           borderRadius: new BorderRadius.all(
                               const Radius.circular(10.0))),
                       alignment: Alignment.center,
-                      width: 100,
-                      height: 100,
+                      width: widget.buttonWidth,
+                      height: widget.buttonHeight,
                       child: widget.leftIcon)),
               _calcButton('0'),
               if (widget.showExtraButtons) _calcButton('.'),
@@ -112,13 +123,15 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.rightButtonFn,
                   child: Container(
                       decoration: new BoxDecoration(
-                          color:
-                              widget.buttonBackgroundColor ?? Color(0xFFEBEDF0),
+                          color: !widget.showBackgroundColor
+                              ? null
+                              : widget.buttonBackgroundColor ??
+                                  Color(0xFFEBEDF0),
                           borderRadius: new BorderRadius.all(
                               const Radius.circular(10.0))),
                       alignment: Alignment.center,
-                      width: 100,
-                      height: 100,
+                      width: widget.buttonWidth,
+                      height: widget.buttonHeight,
                       child: widget.rightIcon))
             ],
           ),
@@ -136,12 +149,14 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         child: Container(
           alignment: Alignment.center,
           decoration: new BoxDecoration(
-              color: backgroundColor ?? Color(0xFFEBEDF0),
+              color: !widget.showBackgroundColor
+                  ? null
+                  : backgroundColor ?? Color(0xFFEBEDF0),
               borderRadius: new BorderRadius.all(const Radius.circular(10.0))),
           // width: MediaQuery.of(context).size.width * 0.11,
           // height: MediaQuery.of(context).size.height * 0.07,
-          width: 100,
-          height: 100,
+          width: widget.buttonWidth,
+          height: widget.buttonHeight,
           child: Text(
             value,
             style: TextStyle(
